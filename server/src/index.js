@@ -30,9 +30,8 @@ app.use(
 app.use(morgan('dev'));
 app.use(express.json({ limit: '1mb' }));
 
-// ✅ ADD THIS ROOT ROUTE HERE (before your API routes)
-app.get('/', (req, res) => {
-  res.redirect('http://localhost:5173');
+app.get('/', (_req, res) => {
+  res.redirect(process.env.CLIENT_URL);
 });
 
 app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
